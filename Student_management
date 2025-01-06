@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <string.h>
+
+struct student {
+    char name[50];
+    int RNO;
+    float CGPA;
+    int C_Name;
+    int C_Id[5];
+};
+
+struct student D[100];
+int i = 0;
+
+void add_student() {
+    printf("Now enter Student details\n");
+    printf("Enter the name of the Student: ");
+    scanf("%s", D[i].name);
+    printf("Enter the Roll number of the student: ");
+    scanf("%d", &D[i].RNO);
+    printf("Enter the CGPA of the Student: ");
+    scanf("%f", &D[i].CGPA);
+    printf("Enter the Course name (as an integer) of the Student: ");
+    scanf("%d", &D[i].C_Name);
+    printf("Enter the 5 course IDs of the student:\n");
+    for (int j = 0; j < 5; j++) {
+        printf("Course ID %d: ", j + 1);
+        scanf("%d", &D[i].C_Id[j]);
+    }
+    i++;
+    printf("Student added successfully!\n");
+}
+void display_students() {
+    printf("\nDisplaying all student details:\n");
+    for (int k = 0; k < i; k++) {
+        printf("\nStudent %d:\n", k + 1);
+        printf("Name: %s\n", D[k].name);
+        printf("Roll Number: %d\n", D[k].RNO);
+        printf("CGPA: %.2f\n", D[k].CGPA);
+        printf("Course Name (as an integer): %d\n", D[k].C_Name);
+        printf("Course IDs: ");
+        for (int j = 0; j < 5; j++) {
+            printf("%d ", D[k].C_Id[j]);
+        }
+        printf("\n");
+    }
+}
+int main() {
+    int choice;
+
+    while (1) {
+        printf("\nMenu:\n");
+        printf("1. Add Student\n");
+        printf("2. Display Students\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                add_student();
+                break;
+            case 2:
+                display_students();
+                break;
+            case 3:
+                printf("Exiting...\n");
+                return 0;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+
+    return 0;
+}
